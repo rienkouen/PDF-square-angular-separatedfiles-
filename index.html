@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="pdfViewer">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Viewer with QR Placeholders</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+</head>
+
+<body ng-controller="PdfController">
+    <h1>PDF Viewer with QR Placeholders</h1>
+    <input type="file" accept="application/pdf" onchange="angular.element(this).scope().loadPdf(this.files[0]); angular.element(this).scope().$apply()">
+
+    <div>
+        <label>
+            <input type="checkbox" ng-model="showFirstPage" ng-change="updateSquares()"> First Page
+        </label>
+        <label>
+            <input type="checkbox" ng-model="showLastPage" ng-change="updateSquares()"> Last Page
+        </label>
+        <label>
+            <input type="checkbox" ng-model="showMiddlePages" ng-change="updateSquares()"> Middle Pages
+        </label>
+    </div>
+
+    <pdf-viewer url="{{pdfUrl}}" show-first-page="showFirstPage" show-last-page="showLastPage" show-middle-pages="showMiddlePages"></pdf-viewer>
+
+    <script src="script.js"></script>
+</body>
+</html>
